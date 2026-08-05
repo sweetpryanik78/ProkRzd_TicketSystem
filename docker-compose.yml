@@ -1,0 +1,50 @@
+name: Prok_Ticket_System
+
+services:
+  mariadb:
+    env_file:
+      - path: ./.env
+        required: true
+    container_name: mariadb
+    build: db/
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      osTicketIntraNet:
+        ipv4_address: 10.0.0.10
+  
+  osticket:
+    env_file:
+      - .env
+    container_name: osTicket
+    build: php/
+    volumes:
+      - osticket-data:/var/www/osTicket-1.18.4
+      - media-data:/var/lib/osTicketMedia
+    restart: always
+    depends_on:
+      - mariadb
+    networks:
+      public:
+      osTicketIntraNet:
+        ipv4_address: 10.0.0.5
+    ports:
+      - 3000:80
+
+networks:
+  public:
+    driver: bridge
+  osTicketIntraNet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/8
+    internal: true
+
+volumes:
+  osticket-data:
+    name: "osticket-disk"
+  db-data:
+    name: "mariadb-disk"
+  media-data:
+    name: "media-disk"
