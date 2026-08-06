@@ -1,38 +1,60 @@
 name: Prok_Ticket_System
 
 services:
-  mariadb:
+
+  certbot:
+    container_name: certbot
     env_file:
-      - path: ./.env
+      - path: .env
         required: true
+    build: certbot/
+    volumes:
+      - ./cert:/etc/cert
+    networks:
+      osTicketNet:
+    ports:
+      - 8080:80
+
+  mariadb:
     container_name: mariadb
+    env_file:
+      - path: .env
+        required: true
     build: db/
     volumes:
       - db-data:/var/lib/mysql
     networks:
       osTicketIntraNet:
         ipv4_address: 10.0.0.10
+    restart: unless-stopped
   
   osticket:
-    env_file:
-      - .env
     container_name: osTicket
+    env_file:
+      - path: .env
+        required: true
     build: php/
     volumes:
       - osticket-data:/var/www/osTicket-1.18.4
       - media-data:/var/lib/osTicketMedia
-    restart: always
-    depends_on:
-      - mariadb
+      - ./cert:/etc/cert
     networks:
-      public:
+      osTicketNet:
       osTicketIntraNet:
         ipv4_address: 10.0.0.5
     ports:
-      - 3000:80
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    depends_on:
+      mariadb:
+        condition: service_started
+      certbot:
+        condition: service_completed_successfully
+        
 
 networks:
-  public:
+  osTicketNet:
     driver: bridge
   osTicketIntraNet:
     driver: bridge

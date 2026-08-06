@@ -1,2 +1,3 @@
-/php/osTicket-1.18.4
 .env
+/cert/*
+/php/osTicket-1.18.4
