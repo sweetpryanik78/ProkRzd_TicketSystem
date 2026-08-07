@@ -13,7 +13,7 @@ services:
     networks:
       osTicketNet:
     ports:
-      - 8080:80
+      - 80:80
 
   mariadb:
     container_name: mariadb
