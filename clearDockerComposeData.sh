@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-docker container stop mariadb osTicket certbot && \
-    docker container rm mariadb osTicket certbot && \
-    docker image rm prokrzd_ticketsystem-mariadb:latest prokrzd_ticketsystem-osticket:latest prokrzd_ticketsystem-certbot:latest && \
+docker container stop mariadb osTicket && \
+    docker container rm mariadb osTicket && \
+    docker image rm prokrzd_ticketsystem-mariadb:latest prokrzd_ticketsystem-osticket:latest && \
     docker volume rm mariadb-disk media-disk osticket-disk
 
 docker system prune -a -f

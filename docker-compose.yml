@@ -2,19 +2,6 @@ name: ProkRzd_TicketSystem
 
 services:
 
-  certbot:
-    container_name: certbot
-    env_file:
-      - path: .env
-        required: true
-    build: certbot/
-    volumes:
-      - ./cert:/etc/cert
-    networks:
-      osTicketNet:
-    ports:
-      - 80:80
-
   mariadb:
     container_name: mariadb
     env_file:
@@ -37,7 +24,7 @@ services:
     volumes:
       - osticket-data:/var/www/osTicket-1.18.4
       - media-data:/var/lib/osTicketMedia
-      - ./cert:/etc/cert
+      - ./tls-certs:/etc/tls-certs
     networks:
       osTicketNet:
       osTicketIntraNet:
@@ -49,8 +36,6 @@ services:
     depends_on:
       mariadb:
         condition: service_started
-      certbot:
-        condition: service_completed_successfully
 
 networks:
   osTicketNet:

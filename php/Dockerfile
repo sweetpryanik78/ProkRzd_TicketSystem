@@ -10,7 +10,7 @@ RUN echo $TZ > /etc/timezone && \
     apt clean
 
 RUN mkdir -p /var/lib/osTicketMedia && chown www-data:www-data /var/lib/osTicketMedia && \
-    mkdir -p /etc/cert && \
+    mkdir -p /etc/tls-certs && \
     rm /etc/apache2/sites-enabled/000-default.conf && \
     rm -rf /var/www/html && \
     a2enmod ssl && a2enmod rewrite
