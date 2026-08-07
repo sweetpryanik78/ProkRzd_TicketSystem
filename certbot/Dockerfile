@@ -7,6 +7,6 @@ RUN echo $TZ > /etc/timezone && \
 
 WORKDIR /
 
-COPY --chmod=755 generateSslCert.sh /usr/bin/generateSslCert.sh
+COPY --chmod=755 getSslCert.sh /usr/bin/getSslCert.sh
 
-CMD ["/bin/sh", "/usr/bin/generateSslCert.sh"]
+CMD ["/bin/sh", "/usr/bin/getSslCert.sh"]
