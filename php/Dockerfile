@@ -1,8 +1,11 @@
 FROM ubuntu/apache2:2.4-24.04_edge
 
+ENV TZ=Europe/Moscow
+
 WORKDIR /var/www/
 
-RUN apt-get update && \
+RUN echo $TZ > /etc/timezone && \
+    apt-get update && \
     apt-get install php php-mysqli php-mysql php-zip php-gd php-apcu php-mbstring php-intl php-xml -y && \
     apt clean
 

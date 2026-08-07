@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 
-# certbot revoke --cert-name $DOMAIN_URL --delete-after-revoke --quiet
+{
+    certbot revoke --cert-name $DOMAIN_URL --delete-after-revoke --quiet
+} || {
+    echo "Now certs were here..."    
+}
 
 rm -rf /etc/letsencrypt/live/$DOMAIN_URL
 rm -rf /etc/cert/$DOMAIN_URL

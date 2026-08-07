@@ -1,6 +1,9 @@
 FROM alpine:3.23.5
 
-RUN apk add --no-cache certbot --no-interactive
+ENV TZ=Europe/Moscow
+
+RUN echo $TZ > /etc/timezone && \
+    apk add --no-cache certbot --no-interactive
 
 WORKDIR /
 
