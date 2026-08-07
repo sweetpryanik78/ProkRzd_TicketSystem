@@ -27,7 +27,7 @@ services:
       osTicketIntraNet:
         ipv4_address: 10.0.0.10
     restart: unless-stopped
-  
+
   osticket:
     container_name: osTicket
     env_file:

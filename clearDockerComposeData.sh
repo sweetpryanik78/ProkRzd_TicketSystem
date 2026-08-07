@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 docker container stop mariadb osTicket certbot && \
     docker container rm mariadb osTicket certbot && \
