@@ -1,3 +1,4 @@
 .env
+/environment/*.env
 /tls-certs
 /php/osTicket-1.18.4
