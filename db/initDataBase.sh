@@ -2,7 +2,7 @@
 
 /usr/bin/mariadb --user=root \
     --password=$MARIADB_ROOT_PASSWORD \
-    --execute="CREATE USER '"$MARIADB_USER"'@'%' IDENTIFIED BY '"$MARIADB_PASWORD"';"
+    --execute="CREATE USER '"$MARIADB_USER"'@'%' IDENTIFIED BY '"$MARIADB_PASSWORD"';"
 
 /usr/bin/mariadb --user=root \
     --password=$MARIADB_ROOT_PASSWORD \
