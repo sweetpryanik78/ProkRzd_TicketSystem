@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-source ~/ProkRzd_TicketSystem/environment/.etc.env
+USER_DIR="/home/akustov"
+
+source $USER_DIR/ProkRzd_TicketSystem/environment/.etc.env
 
 
 {
@@ -20,7 +22,9 @@ source ~/ProkRzd_TicketSystem/environment/.etc.env
        --non-interactive
 }
 
-mkdir -p ~/ProkRzd_TicketSystem/tls-certs/$DOMAIN_NAME
+mkdir -p $USER_DIR/ProkRzd_TicketSystem/tls-certs/$DOMAIN_NAME
 
-cp /etc/letsencrypt/live/$DOMAIN_NAME/fullchain.pem ~/ProkRzd_TicketSystem/tls-certs/$DOMAIN_NAME/fullchain.pem
-cp /etc/letsencrypt/live/$DOMAIN_NAME/privkey.pem ~/ProkRzd_TicketSystem/tls-certs/$DOMAIN_NAME/privkey.pem
+cp /etc/letsencrypt/live/$DOMAIN_NAME/fullchain.pem $USER_DIR/ProkRzd_TicketSystem/tls-certs/$DOMAIN_NAME/fullchain.pem
+cp /etc/letsencrypt/live/$DOMAIN_NAME/privkey.pem $USER_DIR/ProkRzd_TicketSystem/tls-certs/$DOMAIN_NAME/privkey.pem
+
+chmod 644 $USER_DIR/ProkRzd_TicketSystem/tls-certs/$DOMAIN_NAME/privkey.pem
