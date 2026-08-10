@@ -49,8 +49,8 @@ networks:
 
 volumes:
   osticket-data:
-    name: "osticket-disk"
+    name: "prokrzd_ticketsystem_osticket-disk"
   db-data:
-    name: "mariadb-disk"
+    name: "prokrzd_ticketsystem_mariadb-disk"
   media-data:
-    name: "media-disk"
+    name: "prokrzd_ticketsystem_media-disk"
