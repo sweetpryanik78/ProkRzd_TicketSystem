@@ -9,7 +9,8 @@ RUN echo $TZ > /etc/timezone && \
     apt-get install php php-mysqli php-mysql php-zip php-gd php-apcu php-mbstring php-intl php-xml -y && \
     apt clean
 
-RUN mkdir -p /var/lib/osTicketMedia && chown www-data:www-data /var/lib/osTicketMedia && \
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
+    mkdir -p /var/lib/osTicketMedia && chown www-data:www-data /var/lib/osTicketMedia && \
     mkdir -p /etc/tls-certs && \
     rm /etc/apache2/sites-enabled/000-default.conf && \
     rm -rf /var/www/html && \
