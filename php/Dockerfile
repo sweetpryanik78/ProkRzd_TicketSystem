@@ -7,7 +7,7 @@ WORKDIR /var/www/
 RUN echo $TZ > /etc/timezone && \
     apt-get update && \
     apt-get install php php-mysqli php-mysql php-zip php-gd php-apcu php-mbstring php-intl php-xml -y && \
-    apt clean
+    apt-get clean autoclean
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
     mkdir -p /var/lib/osTicketMedia && chown www-data:www-data /var/lib/osTicketMedia && \
